@@ -3,8 +3,8 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
-	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
+	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd">
 
 	<!-- to activate annotations in beans already registered in the ApplicationContext -->
 	<context:annotation-config />
@@ -34,7 +34,8 @@
 		<property name="dataSource" ref="dataSource" />
 		<property name="annotatedClasses">
 			<list>
-				<value>base.model</value>
+				<value>base.model.role.Role</value>
+				<value>base.model.user.User</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -42,6 +43,7 @@
 				<prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
 				<prop key="hibernate.hbm2ddl.auto">update</prop>
 				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.temp.use_jdbc_metadata_defaults">false</prop>
 			</props>
 		</property>
 	</bean>
