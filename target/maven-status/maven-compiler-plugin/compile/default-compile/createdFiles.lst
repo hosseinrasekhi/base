@@ -1,0 +1,9 @@
+com\jersey\series\spring\hibernate\service\IBookService.class
+in\benchresources\cdm\book\BookType.class
+com\jersey\series\spring\hibernate\model\Book.class
+in\benchresources\cdm\book\package-info.class
+com\jersey\series\spring\hibernate\service\BookServiceImpl.class
+in\benchresources\cdm\book\ObjectFactory.class
+in\benchresources\cdm\book\BookListType.class
+com\jersey\series\spring\hibernate\dao\BookDAOImpl.class
+com\jersey\series\spring\hibernate\dao\BookDAO.class
