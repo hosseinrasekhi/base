@@ -28,7 +28,7 @@ public class User {
 	@Column(name = "ENABLE")
 	private boolean enable;
 	
-	@ManyToMany(mappedBy="users")
+	@ManyToMany
 	private Set<Role> roles;
 
 	public int getUserId() {

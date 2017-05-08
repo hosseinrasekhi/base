@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import base.model.user.User;
@@ -22,6 +23,7 @@ public class Role {
 	@Column(name = "ROLE")
 	private String role;
 	
+	@ManyToMany(mappedBy="roles")
 	private Set<User> users;
 	
 	public int getRoleId() {
