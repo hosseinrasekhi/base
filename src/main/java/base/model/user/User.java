@@ -10,9 +10,6 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import base.model.auth_user.AuthUser;
-import base.model.role.Role;
-
 @Entity
 @Table(name="USERS")
 public class User {

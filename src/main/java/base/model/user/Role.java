@@ -1,4 +1,4 @@
-package base.model.role;
+package base.model.user;
 
 import java.util.Set;
 
@@ -8,9 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-
-import base.model.feature.Feature;
-import base.model.user.User;
 
 @Entity
 @Table(name = "ROLE")

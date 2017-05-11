@@ -24,7 +24,8 @@
 	<!-- Flyway configuration -->
 	<bean id="flyway" class="org.flywaydb.core.Flyway" init-method="migrate">
 		<property name="baselineOnMigrate" value="true" />
-		<property name="locations" value="com/jersey/series/spring/hibernate/core/db/flyway/migrations" />
+		<property name="locations"
+			value="com/jersey/series/spring/hibernate/core/db/flyway/migrations" />
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 
@@ -32,10 +33,9 @@
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
-		<property name="annotatedClasses">
+		<property name="packagesToScan">
 			<list>
-				<value>base.model.role.Role</value>
-				<value>base.model.user.User</value>
+				<value>base.model</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -56,5 +56,5 @@
 		<property name="username" value="postgres" />
 		<property name="password" value="root" />
 	</bean>
-	
+
 </beans>

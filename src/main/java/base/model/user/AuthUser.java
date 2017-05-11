@@ -1,4 +1,4 @@
-package base.model.auth_user;
+package base.model.user;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
