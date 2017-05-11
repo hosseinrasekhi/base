@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import base.model.feature.Feature;
 import base.model.user.User;
 
 @Entity
@@ -25,6 +26,9 @@ public class Role {
 	
 	@ManyToMany(mappedBy="roles")
 	private Set<User> users;
+	
+	@ManyToMany
+	private Set<Feature> features;
 	
 	public int getRoleId() {
 		return roleId;
