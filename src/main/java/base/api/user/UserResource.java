@@ -1,6 +1,5 @@
 package base.api.user;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
@@ -17,8 +16,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import base.api.user.dto.UserFullDTO;
+import base.core.dto.DtoUtils;
 import base.model.user.AuthUser;
 import base.model.user.User;
+import base.model.user.dao.AuthUserDAO;
 import base.model.user.dao.UserDAO;
 
 @Service
@@ -27,6 +28,9 @@ public class UserResource {
 	
 	@Autowired
     private UserDAO userDAO;
+	
+	@Autowired
+	private AuthUserDAO authUserDAO;
  
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
@@ -34,8 +38,9 @@ public class UserResource {
     public UserFullDTO add(UserFullDTO dto) {
     	User user = new User();
     	AuthUser authUser = new AuthUser();
-    	authUser.setUsername(dto.getUsername());
-    	user.setAuthUser(authUser);
+    	dto.getAuthUser().saveTo(authUser);
+    	dto.saveTo(user);
+    	authUserDAO.save(authUser);
     	userDAO.save(user);
     	UserFullDTO userFullDTO = new UserFullDTO();
     	userFullDTO.loadFrom(user);
@@ -59,9 +64,6 @@ public class UserResource {
     @Produces(MediaType.APPLICATION_JSON)
     public UserFullDTO update(@PathParam("id") int userId,UserFullDTO dto) {
     	User user = userDAO.getById(userId);
-    	AuthUser authUser = new AuthUser();
-    	authUser.setUsername(dto.getUsername());
-    	user.setAuthUser(authUser);
     	userDAO.update(user);
     	UserFullDTO userFullDTO = new UserFullDTO();
     	userFullDTO.loadFrom(user);
@@ -84,13 +86,7 @@ public class UserResource {
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_JSON)
     public List<UserFullDTO> list() {
-    	ArrayList<UserFullDTO> dtos = new ArrayList<>();
-    	for (User user : userDAO.list()) {
-			UserFullDTO dto = new UserFullDTO();
-			dto.loadFrom(user);
-			dtos.add(dto);
-		}
-    	return dtos;
+    	return DtoUtils.entitysToDtoList(userDAO.list(), UserFullDTO.class);
     }
 
 }

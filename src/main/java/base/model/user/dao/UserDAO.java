@@ -50,5 +50,10 @@ public class UserDAO {
 		return sessionFactory.getCurrentSession().createCriteria(User.class).list();
 	}
 	
+	@Transactional
+	public User createNew(){
+		return (User) sessionFactory.getCurrentSession().save(new User());
+	}
+	
 
 }

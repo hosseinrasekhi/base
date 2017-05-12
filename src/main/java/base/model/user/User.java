@@ -2,8 +2,10 @@ package base.model.user;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
@@ -19,14 +21,14 @@ public class User {
 	private int userId;
 	
 
-	@ManyToOne
+	@ManyToOne (cascade = CascadeType.ALL)
 	private AuthUser authUser;
 	
 	
 	@Column(name = "ENABLE")
 	private boolean enable;
 	
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
 	private Set<Role> roles;
 
 	public int getUserId() {
