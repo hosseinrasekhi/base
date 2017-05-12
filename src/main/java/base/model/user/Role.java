@@ -18,6 +18,7 @@ public class Role {
 	@Column(name = "ROLE_ID")
 	private int roleId;
 	
+
 	@Column(name = "ROLE")
 	private String role;
 	
@@ -51,5 +52,12 @@ public class Role {
 		this.users = users;
 	}
 
+	public Set<Feature> getFeatures() {
+		return features;
+	}
+	
+	public void setFeatures(Set<Feature> features) {
+		this.features = features;
+	}
 
 }

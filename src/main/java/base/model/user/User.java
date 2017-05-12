@@ -18,6 +18,7 @@ public class User {
 	@Column(name = "USER_ID")
 	private int userId;
 	
+
 	@ManyToOne
 	private AuthUser authUser;
 	
@@ -50,5 +51,12 @@ public class User {
 
 	public void setEnable(boolean enable) {
 		this.enable = enable;
+	}
+	public AuthUser getAuthUser() {
+		return authUser;
+	}
+	
+	public void setAuthUser(AuthUser authUser) {
+		this.authUser = authUser;
 	}
 }

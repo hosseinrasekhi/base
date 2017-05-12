@@ -22,7 +22,7 @@
 	</servlet-mapping>
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>/WEB-INF/spring/*.xml</param-value>
+		<param-value>/WEB-INF/spring/web-all.xml</param-value>
 	</context-param>
 	<filter>
 		<filter-name>springSecurityFilterChain</filter-name>
