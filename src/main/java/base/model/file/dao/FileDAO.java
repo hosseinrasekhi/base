@@ -23,4 +23,9 @@ public class FileDAO {
     public void save(File file) {
         sessionFactory.getCurrentSession().save(file);
     }
+    
+    @Transactional
+    public File get(long id) {
+        return (File) sessionFactory.getCurrentSession().get(File.class, id);
+    }
 }

@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
  
 @Entity
-@Table(name = "FILES_UPLOAD")
+@Table(name = "FILES")
 public class File {
     private long id;
     private String fileName;
@@ -41,4 +41,6 @@ public class File {
     public void setData(byte[] data) {
         this.data = data;
     }
+    
+    
 }
