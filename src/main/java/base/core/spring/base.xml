@@ -25,7 +25,7 @@
 	<bean id="flyway" class="org.flywaydb.core.Flyway" init-method="migrate">
 		<property name="baselineOnMigrate" value="true" />
 		<property name="locations"
-			value="com/jersey/series/spring/hibernate/core/db/flyway/migrations" />
+			value="base/core/db/flyway/migrations" />
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 

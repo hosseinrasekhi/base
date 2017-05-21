@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Base">
+
+	<property name="project.name" value="${ant.project.name}" />
+	<property environment="env" />
+	<property file="build.xml.properties" />
+
+	<target name="resetAndInitDB" description="Clear db and initialize it">
+		<!-- Reset DB -->
+		<antcall target="runQuick">
+			<param name="mainClass" value="base.core.db.Migrate_ResetAndInit" />
+		</antcall>
+	</target>
+
+	<target name="runQuick">
+		<description>run a java class</description>
+		<java classname="${mainClass}" fork="true" failonerror="true">
+			<classpath path="../base.war/classes" />
+			<arg line="${args}" />
+		</java>
+	</target>
+
+</project>
+

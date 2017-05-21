@@ -5,7 +5,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class ApplicationContextProvider {
 	
-	private static ApplicationContext ac = new ClassPathXmlApplicationContext("spring-context.xml"); 
+	private static ApplicationContext ac = new ClassPathXmlApplicationContext("base/core/spring/all.xml"); 
 	
 	public static ApplicationContext getApplicationContext(){
 		return ac;
