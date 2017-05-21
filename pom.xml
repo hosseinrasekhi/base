@@ -3,10 +3,10 @@
 
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>in.bench.resources</groupId>
-	<artifactId>Jersey-Spring-Hibernate</artifactId>
+	<artifactId>Base</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<name>Jersey-Spring-Hibernate</name>
+	<name>Base</name>
 	<description>Jersey web service integrating with Spring framework 4.x</description>
 	<!-- https://jersey.java.net/documentation/latest/media.html#json.jackson -->
 
@@ -21,21 +21,22 @@
 	</repositories>
 
 	<properties>
-		<jersey.version>2.12</jersey.version>
+		<jersey.version>2.21</jersey.version>
 		<jersey.scope>compile</jersey.scope>
 		<spring.version>4.2.2.RELEASE</spring.version>
 		<spring.security.version>4.2.2.RELEASE</spring.security.version>
 		<hibernate.version>4.3.6.Final</hibernate.version>
-		<Flyway.version>4.1.2</Flyway.version>
+		<flyway.version>4.1.2</flyway.version>
 		<postgres.version>42.0.0</postgres.version>
 		<compileSource>1.7</compileSource>
 		<maven.compiler.target>1.7</maven.compiler.target>
 		<maven.compiler.source>1.7</maven.compiler.source>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<file.version>1.3.1</file.version>
 	</properties>
 
 	<build>
-		<finalName>Jersey-Spring-Hibernate</finalName>
+		<finalName>Base</finalName>
 
 		<!-- maven compiler plugin -->
 		<plugins>
@@ -94,6 +95,11 @@
 		<!-- Spring Framework-4.x -->
 		<dependency>
 			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
@@ -130,7 +136,7 @@
 		<dependency>
 			<groupId>org.flywaydb</groupId>
 			<artifactId>flyway-core</artifactId>
-			<version>${Flyway.version}</version>
+			<version>${flyway.version}</version>
 		</dependency>
 
 		<!-- MySql-Connector -->
@@ -138,6 +144,26 @@
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
 			<version>${postgres.version}</version>
+		</dependency>
+
+		<!-- file -->
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>${file.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.glassfish.jersey.media</groupId>
+			<artifactId>jersey-media-multipart</artifactId>
+			<version>${jersey.version}</version>
+		</dependency>
+
+		<!-- Servlet and JSP -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.1.0</version>
+			<scope>provided</scope>
 		</dependency>
 
 	</dependencies>
