@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="AUTH_USER")
-public class AuthUser {
+public class AuthUser extends base.core.entity.Entity{
 	public static final String PASSWORD = "PASSWORD";
 
 	public static final String USERNAME = "USERNAME";

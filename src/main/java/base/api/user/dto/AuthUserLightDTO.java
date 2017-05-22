@@ -7,15 +7,15 @@ import base.model.user.AuthUser;
 
 public class AuthUserLightDTO extends DTO<AuthUser>{
 	
-	private int id;
+	private String uid;
 	private String username;
 	
 	@JsonProperty
-	public int getId() {
-		return id;
+	public String getUid() {
+		return uid;
 	}
-	public void setId(int id) {
-		this.id = id;
+	public void setUid(String uid) {
+		this.uid = uid;
 	}
 	@JsonProperty
 	public String getUsername() {
@@ -26,12 +26,12 @@ public class AuthUserLightDTO extends DTO<AuthUser>{
 	}
 	@Override
 	public void loadFrom(AuthUser obj) {
-		this.setId(obj.getId());
+		this.setUid(obj.getUid());
 		this.setUsername(obj.getUsername());
 	}
 	@Override
 	public void saveTo(AuthUser obj) {
-		obj.setId(id);
+		obj.setUid(uid);
 		obj.setUsername(username);
 	}
 }

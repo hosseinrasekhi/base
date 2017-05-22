@@ -3,6 +3,7 @@ package base.model.user.dao;
 import java.util.List;
 
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,7 +24,6 @@ public class AuthUserDAO {
 	@Transactional
     public AuthUser save(AuthUser authUser) {
         sessionFactory.getCurrentSession().save(authUser);
-        sessionFactory.getCurrentSession().flush();
         return authUser;
     }
 	
@@ -34,15 +34,15 @@ public class AuthUserDAO {
     }
 	
 	@Transactional
-    public AuthUser delete(int id) {
-		AuthUser authUser = getById(id);
+    public AuthUser delete(String uid) {
+		AuthUser authUser = getByUid(uid);
         sessionFactory.getCurrentSession().delete(authUser);
         return authUser;
     }
 	
 	@Transactional
-    public AuthUser getById(int id) {
-        return (AuthUser) sessionFactory.getCurrentSession().get(AuthUser.class, id);
+    public AuthUser getByUid(String uid) {
+        return (AuthUser) sessionFactory.getCurrentSession().createCriteria(AuthUser.class).add(Restrictions.eq("uid", uid)).uniqueResult();
     }
 	
 	@SuppressWarnings("unchecked")

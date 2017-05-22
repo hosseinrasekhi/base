@@ -35,28 +35,28 @@ public class RoleResource {
     }
  
     @GET
-    @Path("{id}")
+    @Path("{uid}")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_JSON)
-    public RoleFullDTO get(@PathParam("id") int roleId) {
-    	return DtoUtils.entityToDto(roleDAO.getById(roleId), RoleFullDTO.class);
+    public RoleFullDTO get(@PathParam("uid") String uid) {
+    	return DtoUtils.entityToDto(roleDAO.getByUid(uid), RoleFullDTO.class);
     }
  
     @PUT
-    @Path("{id}")
+    @Path("{uid}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public RoleFullDTO update(@PathParam("id") int roleId,RoleFullDTO dto) {
-    	dto.setId(roleId);
+    public RoleFullDTO update(@PathParam("uid") String uid,RoleFullDTO dto) {
+    	dto.setUid(uid);
     	return DtoUtils.entityToDto(roleDAO.update(DtoUtils.dtoToEntity(dto, Role.class)), RoleFullDTO.class);
     }
  
     @DELETE
-    @Path("{id}")
+    @Path("{uid}")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_JSON)
-    public RoleFullDTO delete(@PathParam("id") int roleId) {
-    	return DtoUtils.entityToDto(roleDAO.delete(roleId), RoleFullDTO.class);
+    public RoleFullDTO delete(@PathParam("uid") String uid) {
+    	return DtoUtils.entityToDto(roleDAO.delete(uid), RoleFullDTO.class);
     }
  
     @GET

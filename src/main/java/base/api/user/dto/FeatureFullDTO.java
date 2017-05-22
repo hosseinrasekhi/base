@@ -7,15 +7,15 @@ import base.model.user.Feature;
 
 public class FeatureFullDTO extends DTO<Feature>{
 	
-	private int id;
+	private String uid;
 	private String description;
 	private String name;
 	@JsonProperty
-	public int getId() {
-		return id;
+	public String getUid() {
+		return uid;
 	}
-	public void setId(int id) {
-		this.id = id;
+	public void setUid(String uid) {
+		this.uid = uid;
 	}
 	@JsonProperty
 	public String getDescription() {
@@ -35,11 +35,11 @@ public class FeatureFullDTO extends DTO<Feature>{
 	public void loadFrom(Feature obj) {
 		this.setDescription(obj.getDescription());
 		this.setName(obj.getName());
-		this.setId(obj.getId());
+		this.setUid(obj.getUid());
 	}
 	@Override
 	public void saveTo(Feature obj) {
-		obj.setId(id);
+		obj.setUid(uid);
 		obj.setName(name);
 		obj.setDescription(description);
 	}

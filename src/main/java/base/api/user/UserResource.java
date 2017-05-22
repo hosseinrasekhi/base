@@ -19,7 +19,6 @@ import base.api.user.dto.UserFullDTO;
 import base.core.dto.DtoUtils;
 import base.model.user.AuthUser;
 import base.model.user.User;
-import base.model.user.dao.AuthUserDAO;
 import base.model.user.dao.UserDAO;
 
 @Service
@@ -29,57 +28,39 @@ public class UserResource {
 	@Autowired
     private UserDAO userDAO;
 	
-	@Autowired
-	private AuthUserDAO authUserDAO;
- 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public UserFullDTO add(UserFullDTO dto) {
-    	User user = new User();
-    	AuthUser authUser = new AuthUser();
-    	dto.getAuthUser().saveTo(authUser);
-    	dto.saveTo(user);
-    	authUserDAO.save(authUser);
-    	userDAO.save(user);
-    	UserFullDTO userFullDTO = new UserFullDTO();
-    	userFullDTO.loadFrom(user);
-    	return userFullDTO;
+    	AuthUser authUser = DtoUtils.dtoToEntity(dto.getAuthUser(), AuthUser.class);
+    	User user = DtoUtils.dtoToEntity(dto, User.class);
+    	user.setAuthUser(authUser);
+		return DtoUtils.entityToDto(userDAO.save(user), UserFullDTO.class);
     }
  
     @GET
-    @Path("{id}")
+    @Path("{uid}")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_JSON)
-    public UserFullDTO get(@PathParam("id") int userId) {
-    	User user = userDAO.getById(userId);
-    	UserFullDTO userFullDTO = new UserFullDTO();
-    	userFullDTO.loadFrom(user);
-    	return userFullDTO;
+    public UserFullDTO get(@PathParam("uid") String uid) {
+    	return DtoUtils.entityToDto(userDAO.getByUid(uid), UserFullDTO.class);
     }
  
     @PUT
-    @Path("{id}")
+    @Path("{uid}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public UserFullDTO update(@PathParam("id") int userId,UserFullDTO dto) {
-    	User user = userDAO.getById(userId);
-    	userDAO.update(user);
-    	UserFullDTO userFullDTO = new UserFullDTO();
-    	userFullDTO.loadFrom(user);
-    	return userFullDTO;
+    public UserFullDTO update(@PathParam("uid") String uid,UserFullDTO dto) {
+    	dto.setUid(uid);
+    	return DtoUtils.entityToDto(userDAO.update(DtoUtils.dtoToEntity(dto, User.class)), UserFullDTO.class);
     }
  
     @DELETE
-    @Path("{id}")
+    @Path("{uid}")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_JSON)
-    public UserFullDTO delete(@PathParam("id") int userId) {
-    	User user = userDAO.delete(userId);
-    	UserFullDTO userFullDTO = new UserFullDTO();
-    	userFullDTO.loadFrom(user);
-    	return userFullDTO;
-    	
+    public UserFullDTO delete(@PathParam("uid") String uid) {
+    	return DtoUtils.entityToDto(userDAO.delete(uid), UserFullDTO.class);
     }
  
     @GET

@@ -11,17 +11,18 @@ import base.model.user.Role;
 
 public class RoleFullDTO extends DTO<Role>{
 	
-	private int id;
+	private String uid;
 	private String role;
 	private List<FeatureFullDTO> features;
 	
 	@JsonProperty
-	public int getId() {
-		return id;
+	public String getUid() {
+		return uid;
 	}
-	public void setId(int id) {
-		this.id = id;
+	public void setUid(String uid) {
+		this.uid = uid;
 	}
+	
 	@JsonProperty
 	public String getRole() {
 		return role;
@@ -38,14 +39,14 @@ public class RoleFullDTO extends DTO<Role>{
 	}
 	@Override
 	public void loadFrom(Role obj) {
-		this.setId(obj.getId());
+		this.setUid(obj.getUid());
 		this.setRole(obj.getRole());
 		this.setFeatures(DtoUtils.entitysToDtoList(obj.getFeatures(), FeatureFullDTO.class));
 		
 	}
 	@Override
 	public void saveTo(Role obj) {
-		obj.setId(id);
+		obj.setUid(uid);
 		obj.setRole(role);
 		obj.setFeatures(DtoUtils.dtoListToEntitySet(features, Feature.class));
 	}

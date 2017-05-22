@@ -15,7 +15,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "USERS")
-public class User {
+public class User extends base.core.entity.Entity{
 	private static final String UID = "UID";
 
 	public static final String ID = "ID";
@@ -32,7 +32,7 @@ public class User {
 	public void setId(int id) {
 		this.id = id;
 	}
-
+	
 	@Column(name = UID, nullable = false, unique = true)
 	private String uid;
 

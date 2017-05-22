@@ -7,6 +7,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import base.core.entity.Entity;
+import base.util.generator.UIDGenerator;
+
 public class DtoUtils {
 	
 	@SuppressWarnings("unchecked")
@@ -52,7 +55,7 @@ public class DtoUtils {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public static <E,D extends DTO<E>> E dtoToEntity(D dto,Class<E> entity){
+	public static <E extends Entity,D extends DTO<E>> E dtoToEntity(D dto,Class<E> entity){
 		if(dto == null)
 			return null;
 		E e = null;
@@ -64,6 +67,7 @@ public class DtoUtils {
 			e1.printStackTrace();
 			return null;
 		}
+		e.setUid(UIDGenerator.generatUID());
 		dto.saveTo(e);
 		return e;
 	}

@@ -13,7 +13,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = Role.ROLE)
-public class Role {
+public class Role extends base.core.entity.Entity{
 	
 	public static final String ROLE = "ROLE";
 

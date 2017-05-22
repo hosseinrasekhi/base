@@ -35,28 +35,28 @@ public class FeatureResource {
     }
  
     @GET
-    @Path("{id}")
+    @Path("{uid}")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_JSON)
-    public FeatureFullDTO get(@PathParam("id") int featureId) {
-    	return DtoUtils.entityToDto(featureDAO.getById(featureId), FeatureFullDTO.class);
+    public FeatureFullDTO get(@PathParam("uid") String uid) {
+    	return DtoUtils.entityToDto(featureDAO.getByUid(uid), FeatureFullDTO.class);
     }
  
     @PUT
-    @Path("{id}")
+    @Path("{uid}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public FeatureFullDTO update(@PathParam("id") int featureId,FeatureFullDTO dto) {
-    	dto.setId(featureId);
+    public FeatureFullDTO update(@PathParam("uid") String uid,FeatureFullDTO dto) {
+    	dto.setUid(uid);
     	return DtoUtils.entityToDto(featureDAO.update(DtoUtils.dtoToEntity(dto, Feature.class)), FeatureFullDTO.class);
     }
  
     @DELETE
-    @Path("{id}")
+    @Path("{uid}")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_JSON)
-    public FeatureFullDTO delete(@PathParam("id") int featureId) {
-    	return DtoUtils.entityToDto(featureDAO.delete(featureId), FeatureFullDTO.class);
+    public FeatureFullDTO delete(@PathParam("uid") String uid) {
+    	return DtoUtils.entityToDto(featureDAO.delete(uid), FeatureFullDTO.class);
     }
  
     @GET

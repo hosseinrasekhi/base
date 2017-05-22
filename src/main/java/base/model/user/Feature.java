@@ -12,7 +12,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "FEATURE")
-public class Feature {
+public class Feature extends base.core.entity.Entity{
 	
 	public static final String UID = "UID";
 

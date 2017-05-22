@@ -2,6 +2,8 @@ package base.api.user.dto;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import base.core.dto.DTO;
 import base.core.dto.DtoUtils;
 import base.model.user.AuthUser;
@@ -10,13 +12,13 @@ import base.model.user.User;
 
 public class UserFullDTO extends DTO<User>{
 	
-	private int id;
+	private String uid;
 	private boolean enable;
 	private AuthUserLightDTO authUser;
 	private List<RoleFullDTO> roles;
 	
 	public void saveTo(User user){
-		user.setId(id);
+		user.setUid(uid);
 		user.setEnable(enable);
 		user.setAuthUser(DtoUtils.dtoToEntity(authUser, AuthUser.class));
 		user.setRoles(DtoUtils.dtoListToEntitySet(roles, Role.class));
@@ -24,18 +26,19 @@ public class UserFullDTO extends DTO<User>{
 	}
 	
 	public void loadFrom(User user){
-		this.setId(user.getId());
+		this.setUid(user.getUid());
 		this.setEnable(user.isEnable());
 		this.setRoles(DtoUtils.entitysToDtoList(user.getRoles(), RoleFullDTO.class));
 		this.setAuthUser(DtoUtils.entityToDto(user.getAuthUser(), AuthUserLightDTO.class));
 	}
 
-	public int getId() {
-		return id;
+	@JsonProperty
+	public String getUid() {
+		return uid;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setUid(String uid) {
+		this.uid = uid;
 	}
 
 	public boolean isEnable() {
