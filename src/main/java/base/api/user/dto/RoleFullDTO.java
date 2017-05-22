@@ -38,14 +38,14 @@ public class RoleFullDTO extends DTO<Role>{
 	}
 	@Override
 	public void loadFrom(Role obj) {
-		this.setId(obj.getRoleId());
+		this.setId(obj.getId());
 		this.setRole(obj.getRole());
 		this.setFeatures(DtoUtils.entitysToDtoList(obj.getFeatures(), FeatureFullDTO.class));
 		
 	}
 	@Override
 	public void saveTo(Role obj) {
-		obj.setRoleId(id);
+		obj.setId(id);
 		obj.setRole(role);
 		obj.setFeatures(DtoUtils.dtoListToEntitySet(features, Feature.class));
 	}

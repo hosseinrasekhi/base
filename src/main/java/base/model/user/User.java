@@ -7,33 +7,51 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="USERS")
+@Table(name = "USERS")
 public class User {
-	@Id 
-	@GeneratedValue
-	@Column(name = "USER_ID")
-	private int userId;
-	
+	private static final String UID = "UID";
 
-	@ManyToOne (cascade = CascadeType.ALL)
+	public static final String ID = "ID";
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = ID)
+	private int id;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	@Column(name = UID, nullable = false, unique = true)
+	private String uid;
+
+	public String getUid() {
+		return uid;
+	}
+
+	public void setUid(String uid) {
+		this.uid = uid;
+	}
+
+	@ManyToOne(cascade = CascadeType.ALL)
 	private AuthUser authUser;
-	
-	
+
 	@Column(name = "ENABLE")
 	private boolean enable;
-	
+
 	@ManyToMany(fetch = FetchType.EAGER)
 	private Set<Role> roles;
-
-	public int getUserId() {
-		return userId;
-	}
 
 	public Set<Role> getRoles() {
 		return roles;
@@ -43,10 +61,6 @@ public class User {
 		this.roles = roles;
 	}
 
-	public void setUserId(int userId) {
-		this.userId = userId;
-	}
-
 	public boolean isEnable() {
 		return enable;
 	}
@@ -54,10 +68,11 @@ public class User {
 	public void setEnable(boolean enable) {
 		this.enable = enable;
 	}
+
 	public AuthUser getAuthUser() {
 		return authUser;
 	}
-	
+
 	public void setAuthUser(AuthUser authUser) {
 		this.authUser = authUser;
 	}

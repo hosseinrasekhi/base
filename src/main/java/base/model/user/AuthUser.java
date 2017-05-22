@@ -3,29 +3,50 @@ package base.model.user;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="AUTH_USER")
 public class AuthUser {
+	public static final String PASSWORD = "PASSWORD";
+
+	public static final String USERNAME = "USERNAME";
+
+	public static final String UID = "UID";
+
+	public static final String ID = "ID";
+
 	@Id 
-	@GeneratedValue
-	@Column(name = "AUTH_USER_ID")
-	private int authUserId;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = ID)
+	private int id;
 	
-	@Column(name = "USERNAME")
-	private String username;
+	@Column(name = UID, nullable = false, unique = true)
+	private String uid;
 	
-	@Column(name = "PASSWORD")
-	private String password;
-	
-	public int getAuthUserId() {
-		return authUserId;
+	public String getUid() {
+		return uid;
 	}
 
-	public void setAuthUserId(int authUserId) {
-		this.authUserId = authUserId;
+	public void setUid(String uid) {
+		this.uid = uid;
+	}
+
+	@Column(name = USERNAME)
+	private String username;
+	
+	@Column(name = PASSWORD)
+	private String password;
+	
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getUsername() {

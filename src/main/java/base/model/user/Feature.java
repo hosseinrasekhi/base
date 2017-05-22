@@ -5,6 +5,7 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
@@ -13,28 +14,47 @@ import javax.persistence.Table;
 @Table(name = "FEATURE")
 public class Feature {
 	
-	@Id 
-	@GeneratedValue
-	@Column(name = "FEATURE_ID")
-	private int featureId;
+	public static final String UID = "UID";
 
-	@Column(name = "NAME")
+	public static final String DESCRIPTION = "DESCRIPTION";
+
+	public static final String NAME = "NAME";
+
+	public static final String ID = "ID";
+
+	@Id 
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = ID)
+	private int id;
+	
+	@Column(name = UID, nullable = false, unique = true)
+	private String uid;
+	
+	public String getUid() {
+		return uid;
+	}
+
+	public void setUid(String uid) {
+		this.uid = uid;
+	}
+
+	@Column(name = NAME)
 	private String name;
 	
-	@Column(name = "DESCRIPTION")
+	@Column(name = DESCRIPTION)
 	private String description;
 	
 	@ManyToMany(mappedBy = "features")
 	private Set<Role> roles;
 
-	public int getFeatureId() {
-		return featureId;
+	public int getId() {
+		return id;
 	}
-	
-	public void setFeatureId(int featureId) {
-		this.featureId = featureId;
+
+	public void setId(int id) {
+		this.id = id;
 	}
-	
+
 	public String getName() {
 		return name;
 	}

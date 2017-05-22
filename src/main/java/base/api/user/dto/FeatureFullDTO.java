@@ -35,11 +35,11 @@ public class FeatureFullDTO extends DTO<Feature>{
 	public void loadFrom(Feature obj) {
 		this.setDescription(obj.getDescription());
 		this.setName(obj.getName());
-		this.setId(obj.getFeatureId());
+		this.setId(obj.getId());
 	}
 	@Override
 	public void saveTo(Feature obj) {
-		obj.setFeatureId(id);
+		obj.setId(id);
 		obj.setName(name);
 		obj.setDescription(description);
 	}

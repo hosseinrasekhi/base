@@ -26,12 +26,12 @@ public class AuthUserLightDTO extends DTO<AuthUser>{
 	}
 	@Override
 	public void loadFrom(AuthUser obj) {
-		this.setId(obj.getAuthUserId());
+		this.setId(obj.getId());
 		this.setUsername(obj.getUsername());
 	}
 	@Override
 	public void saveTo(AuthUser obj) {
-		obj.setAuthUserId(id);
+		obj.setId(id);
 		obj.setUsername(username);
 	}
 }

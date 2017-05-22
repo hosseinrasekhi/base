@@ -26,10 +26,9 @@ public final class Migrate_ResetAndInit {
 	 * @throws DuplicateEnumTypeException 
 	 * @throws IOException 
 	 */
-	public static void main(String[] args) throws SQLException {
+	public static void main(String[] args) throws SQLException, IOException {
 		ApplicationContext applicationContext = ApplicationContextProvider.getApplicationContext();
 		Flyway flyway = applicationContext.getBean(Flyway.class);
         flyway.clean();
-        flyway.migrate();
 	}
 }

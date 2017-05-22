@@ -6,21 +6,39 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "ROLE")
+@Table(name = Role.ROLE)
 public class Role {
 	
+	public static final String ROLE = "ROLE";
+
+	public static final String UID = "UID";
+
+	public static final String ID = "ID";
+
 	@Id 
-	@GeneratedValue
-	@Column(name = "ROLE_ID")
-	private int roleId;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = ID)
+	private int id;
+	
+	@Column(name = UID, nullable = false, unique = true)
+	private String uid;
+	
+	public String getUid() {
+		return uid;
+	}
+
+	public void setUid(String uid) {
+		this.uid = uid;
+	}
 	
 
-	@Column(name = "ROLE")
+	@Column(name = ROLE)
 	private String role;
 	
 	@ManyToMany(mappedBy="roles")
@@ -29,12 +47,12 @@ public class Role {
 	@ManyToMany(fetch = FetchType.EAGER)
 	private Set<Feature> features;
 	
-	public int getRoleId() {
-		return roleId;
+	public int getId() {
+		return id;
 	}
 
-	public void setRoleId(int roleId) {
-		this.roleId = roleId;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getRole() {
