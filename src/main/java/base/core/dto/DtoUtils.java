@@ -34,7 +34,7 @@ public class DtoUtils {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public static <E,D extends DTO<E>> Set<E> dtoListToEntitySet(List<D> dtoList,Class<E> entity){
+	public static <E extends Entity,D extends DTO<E>> Set<E> dtoListToEntitySet(List<D> dtoList,Class<E> entity){
 		if(dtoList == null || dtoList.isEmpty())
 			return null;
 		Set<E> entitys = new HashSet<>();
@@ -49,6 +49,7 @@ public class DtoUtils {
 				continue;
 			}
 			d.saveTo(e);
+			e.setUid(UIDGenerator.generatUID());
 			entitys.add(e);
 		}
 		return entitys;
@@ -67,8 +68,8 @@ public class DtoUtils {
 			e1.printStackTrace();
 			return null;
 		}
-		e.setUid(UIDGenerator.generatUID());
 		dto.saveTo(e);
+		e.setUid(UIDGenerator.generatUID());
 		return e;
 	}
 	
